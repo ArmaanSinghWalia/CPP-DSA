@@ -2,6 +2,8 @@
 
 This folder contains implementation of Singly Linked Lists Codes ONLY.
 
+Each file has comments for clarity
+
 ### CONTENTS ###
 
 "I & D" -> Implementing SLL, along with Insertion and Deletions Functions.
