@@ -2,7 +2,7 @@
 
 This folder contains implementation of Singly Linked Lists Codes ONLY.
 
-Each file has comments for clarity
+Each program has comments for clarity
 
 ### CONTENTS ###
 
