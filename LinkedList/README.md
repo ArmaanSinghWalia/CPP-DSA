@@ -1,8 +1,13 @@
-This repository contains structured codes and notes on Linked List data structures. 
-Each type (SLL, DLL, CLL) is organised in its own subdirectory
+### BASIC OVERVIEW ###
 
-"Singly_Linked_List" -> SLL implementation code, operations, and notes
-"Doubly_Linked_List" -> [Coming Soon]
-"Circular_Linked_List" -> [Coming Soon]
+This repository contains detailed implementations and notes on Linked Lists using C++.
+It is organised into folders for different types of Linked Lists and operations, along with detailed notes.
 
-Each subfolder consists of codes and notes stored separately
+### CONTENTS ###
+
+"Singly_Linked_List" -> SLL Codes and notes 
+
+"Doubly_Linked_List" -> Coming Soon
+
+"Circular_Linked_List" -> Coming soon
+
