@@ -1,9 +1,9 @@
-### The notes will cover the concepts and details behind circular linked lists as I understand them. ###
+### The code handles all common edge cases. ###
 
-They are handwritten and will be added to this repo soon.
+I wrote this as a learning exercise to understand linked lists better.
 
-The notes explain key points and edge cases involved in implementing circular linked lists.
+The implementation is clean and straightforward, focusing on correctness rather than optimization.
 
-Writing these helped me consolidate what I learned during the coding process.
+This was a fun project that helped me strengthen my C++ skills.
 
-Looking forward to sharing them once I organize and digitize the material.
+Feel free to explore and provide feedback!
