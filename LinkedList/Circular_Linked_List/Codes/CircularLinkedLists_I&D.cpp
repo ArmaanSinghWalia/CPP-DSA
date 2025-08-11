@@ -1,3 +1,10 @@
+// Circular Linked Lists
+// Insertions, Deletions, And basic data structure operations (Traverse & Count)
+// Self implemented code - Logic building + Dry code runs
+// Finished on : 10 August 2025
+
+// - ASWalia
+
 #include<iostream>
 using namespace std;
 
@@ -100,7 +107,7 @@ void InsertAtPos(int pos, int newval, Node*& Head) {
 
 	// If list is empty and pos > 1, invalid
 	if (Head == nullptr && pos > 1) {
-		cout << "ERROR: Empty list — can only insert at position 1." << endl;   // this is important
+		cout << "ERROR: Empty list â€” can only insert at position 1." << endl;   // this is important
 		return;
 	}
 	// traversing to node before it, at position -> pos - 1
@@ -244,4 +251,5 @@ int main() {
 
 
 	return 0;
+
 }
