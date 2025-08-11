@@ -1,3 +1,4 @@
+### 10 August ###
 ### The code handles all common edge cases. ###
 
 I wrote this as a learning exercise to understand linked lists better.
