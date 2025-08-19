@@ -7,7 +7,7 @@ It is organised into folders for different types of Linked Lists and operations,
 
 "Singly_Linked_List" -> SLL Codes and notes 
 
-"Doubly_Linked_List" -> Coming Soon
+"Doubly_Linked_List" -> DLL Codes and notes 
 
-"Circular_Linked_List" -> Coming soon
+"Circular_Linked_List" -> CLL Codes. Notes Coming soon
 
