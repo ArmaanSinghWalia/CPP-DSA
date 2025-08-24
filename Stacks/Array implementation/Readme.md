@@ -1,5 +1,7 @@
 ### STACK IMPLEMENTATION IN ARRAYS ###
 
+
+
 ### IMPORTANT POINTS ###
 
 1) Top pointer/index → Keep an integer top that tracks the current top element’s index.
