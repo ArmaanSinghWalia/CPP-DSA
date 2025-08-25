@@ -48,9 +48,14 @@ public:
     }
 
     // Check if stack is empty
-    bool isEmpty() {
-        return top == -1;
-    }
+   void isEmpty() {
+	if (top == -1) {
+		cout << "stack is empty" << endl;
+		return;
+	}
+	cout << "Stack is not empty" << endl;
+}
+
 };
 
 int main() {
@@ -87,12 +92,8 @@ int main() {
 
     // Step 7: Check if stack is empty
     cout << "\nIs stack empty? " << endl;
-    if (st.isEmpty()) {
-        cout << "Yes\n";
-    }
-    else {
-        cout << "No\n";
-    }
+    st.isEmpty();
 
     return 0;
 }
+
