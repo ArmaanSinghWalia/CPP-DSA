@@ -1,6 +1,7 @@
-// Singly Linked Lists
-// Insertions, Deletions, And basic data structure operations (Traverse & Count)
-// Wrote My First, Zero-Mistakes Code On 09/07/2025
+// Singly Linked List
+// Full Implementation: Insertions, Deletions, Traversal, Count
+// Extended version with InsertAtPos, DeleteAfter, DeleteByValue
+// Refined for clarity on 09/08/2025
 
 // - ASWalia
 
@@ -10,24 +11,21 @@ using namespace std;
 // Structure Of Node
 class Node {
 public:
-
 	int value;
 	Node* next;
 };
 
-// Displaying Linked List (value)
-void print_list(Node* Head) {
-
+// Displaying Linked List (Traverse + Print)
+void display(Node* Head) {
 	while (Head != nullptr) {
 		cout << Head->value << " ";
 		Head = Head->next;
 	}
 }
 
-// Counting Number Of Nodes Of The Linked List
-int count_list(Node* Head) {
+// Counting Number Of Nodes In The List
+int Count(Node* Head) {
 	int count = 0;
-
 	while (Head != nullptr) {
 		count++;
 		Head = Head->next;
@@ -35,90 +33,123 @@ int count_list(Node* Head) {
 	return count;
 }
 
-// Inserting Node At The Beginning Of The Linked List
+// Inserting Node At The Beginning
 void InsertAtBeginning(Node*& Head, int newval) {
 
-	// Making New Node
-	Node* newnode = new Node();                                           
+	// Make New Node
+	Node* newnode = new Node();
 	newnode->value = newval;
 	newnode->next = Head;
 
-	// Updating Head
-	Head = newnode;  
+	// Update Head
+	Head = newnode;
 }
 
-// Inserting Node At The End Of The Linked List
+// Inserting Node At The End
 void InsertAtEnd(Node*& Head, int newval) {
 
-	// Making New Node
+	// Make New Node
 	Node* newnode = new Node();
 	newnode->value = newval;
 	newnode->next = nullptr;
 
 	// If List Is Empty
 	if (Head == nullptr) {
-		// head ptr points to newnode . . . list has one node
 		Head = newnode;
 		return;
 	}
 
+	// Traverse To Last Node
 	Node* last = Head;
-
-	// Traversing To End Node
-	while (last->next != NULL) {
+	while (last->next != nullptr) {
 		last = last->next;
 	}
+
 	last->next = newnode;
 }
 
-// Inserting Node After A Specific Node Of The Linked List
+// Inserting Node After A Specific Node
 void InsertAfter(Node* prev, int newval) {
-	
-	// check !prev
+
+	// Check Null Case
 	if (prev == nullptr) {
-		cout << "Error: List is empty.\n";
+		cout << "Error: Cannot insert after nullptr.\n";
 		return;
 	}
 
-	// Make Newnode
+	// Make New Node
 	Node* newnode = new Node();
 	newnode->value = newval;
 	newnode->next = prev->next;
 	prev->next = newnode;
 }
 
-// Deleting First Node Of The Linked List
+// Inserting Node At A Given Position (1-based)
+void InsertAtPos(int pos, int newval, Node*& Head) {
+
+	int size = Count(Head);
+
+	// Out of Range Check
+	if (pos > size + 1 || pos <= 0) {
+		cout << "Error: Enter position within range of the list.\n";
+		return;
+	}
+
+	// Insert At Beginning
+	if (pos == 1 || Head == nullptr) {
+		InsertAtBeginning(Head, newval);
+		return;
+	}
+
+	// Insert At End
+	if (pos == size + 1) {
+		InsertAtEnd(Head, newval);
+		return;
+	}
+
+	// Insert At Middle
+	Node* newnode = new Node();
+	newnode->value = newval;
+
+	Node* prev = Head;
+	for (int i = 1; i < pos - 1; i++) {
+		prev = prev->next;
+	}
+
+	newnode->next = prev->next;
+	prev->next = newnode;
+}
+
+// Deleting First Node
 void DeleteFirst(Node*& Head) {
 
-	// check !Head
 	if (Head == nullptr) {
-		cout << "Error: List is empty.\n";
+		cout << "Error: List is already empty.\n";
 		return;
 	}
 
 	Node* temp = Head;
-
-	if (Head->next != nullptr) {
-		Head = Head->next;
-	}	
-	delete(temp);
+	Head = Head->next;
+	delete temp;
 }
 
+// Deleting Last Node
 void DeleteLast(Node*& Head) {
 
-	// Check !Head
+	// Case: Empty List
 	if (Head == nullptr) {
-		cout << "Error: List is empty.\n";
+		cout << "Error: List is already empty.\n";
 		return;
 	}
 
-	// Check For One Node
+	// Case: Only One Node
 	if (Head->next == nullptr) {
-		DeleteFirst(Head);
+		delete Head;
+		Head = nullptr;
 		return;
 	}
 
-	// New Nodes For Deletion 
+	// Traverse To Second Last
 	Node* prev = nullptr;
 	Node* curr = Head;
 
@@ -127,32 +158,34 @@ void DeleteLast(Node*& Head) {
 		curr = curr->next;
 	}
 
-	prev->next = curr->next; // nullptr
-	delete(curr);
+	prev->next = nullptr;
+	delete curr;
 }
 
-void DeleteThisNode(int pos, Node*& Head) {
+// Deleting Node At A Given Position
+void DeleteAtPos(int pos, Node*& Head) {
 
-	// Check If List Is Empty
+	int size = Count(Head);
+
+	// Case: Empty List
 	if (Head == nullptr) {
-		cout << "Error: List is empty.\n";
+		cout << "Error: List is already empty.\n";
 		return;
 	}
 
-	int list_len = count_list(Head);
-
-	// Check If Position Not In Range
-	if (pos > list_len or pos <= 0) {
-		cout << "Error: Invalid position.\n";
+	// Out of Range
+	if (pos > size || pos <= 0) {
+		cout << "Error: Enter valid position.\n";
 		return;
 	}
 
-	// Check If Pos == 1 . . . Deleting First Node
+	// Case: First Node
 	if (pos == 1) {
 		DeleteFirst(Head);
 		return;
 	}
 
+	// Traverse To The Node
 	Node* prev = nullptr;
 	Node* curr = Head;
 
@@ -160,46 +193,109 @@ void DeleteThisNode(int pos, Node*& Head) {
 		prev = curr;
 		curr = curr->next;
 	}
-	// curr points to the Node to be deleted
 
 	prev->next = curr->next;
-	delete(curr);
+	delete curr;
 }
 
+// Deleting Node After A Specific Node
+void DeleteAfter(Node* Prev) {
 
+	// Null Check
+	if (Prev == nullptr) {
+		cout << "Error: Cannot delete after nullptr.\n";
+		return;
+	}
+
+	Node* Temp = Prev->next;
+
+	// If No Node After Prev
+	if (Temp == nullptr) {
+		cout << "Error: No node exists after given node.\n";
+		return;
+	}
+
+	Prev->next = Temp->next;
+	delete Temp;
+}
+
+// Deleting Node By Value
+void DeleteByValue(int val, Node*& Head) {
+
+	// Case: Empty List
+	if (Head == nullptr) {
+		cout << "Error: List is already empty.\n";
+		return;
+	}
+
+	// Case 1: Head Node Matches
+	if (Head->value == val) {
+		Node* temp = Head;
+		Head = Head->next;
+		delete temp;
+		return;
+	}
+
+	// Case 2: Search Further
+	Node* curr = Head;
+	while (curr->next && curr->next->value != val) {
+		curr = curr->next;
+	}
+
+	// Not Found
+	if (curr->next == nullptr) {
+		cout << "Error: Node with value " << val << " not found.\n";
+		return;
+	}
+
+	// Delete Matching Node
+	Node* temp = curr->next;
+	curr->next = temp->next;
+	delete temp;
+}
+
+// Main Function
 int main() {
 
+	// Making 3 Nodes
 	Node* head = new Node();
 	Node* second = new Node();
 	Node* third = new Node();
 
 	head->value = 1;
 	head->next = second;
+
 	second->value = 2;
 	second->next = third;
+
 	third->value = 3;
 	third->next = nullptr;
 
-	cout << "original list -->\n" << endl;
-	print_list(head);
-	cout << "\nnumber of elements: " << count_list(head) << endl;
+	// Initial List
+	cout << "Original List -->" << endl;
+	display(head);
+	cout << "\nNumber of elements: " << Count(head) << endl;
 
-	InsertAtBeginning(head, 0);
-	InsertAtEnd(head, 100);
-	InsertAfter(third, 4);
+	// Insertions
+	InsertAtBeginning(head, 0);     // 0 1 2 3
+	InsertAtEnd(head, 100);        // 0 1 2 3 100
+	InsertAfter(third, 22);        // 0 1 2 3 22 100
+	InsertAtPos(3, 1000, head);    // 0 1 1000 2 3 22 100  
 
-	cout << "\n\nAfter Insertions -->" << endl;
-	print_list(head);
-	cout << "\nnumber of elements: " << count_list(head) << endl;
+	cout << "\nAfter Insertions -->" << endl;
+	display(head);
+	cout << "\nNumber of elements: " << Count(head) << endl;
 
-	DeleteFirst(head);
-	DeleteLast(head);
-	DeleteThisNode(4, head);
+	// Deletions
+	DeleteFirst(head);             // 1 1000 2 3 22 100
+	DeleteLast(head);              // 1 1000 2 3 22
+	DeleteAtPos(5, head);          // 1 1000 2 3
+	DeleteAfter(head);             // 1 2 3
+	DeleteByValue(2, head);        // 1 3
 
-	cout << "\n\nAfter Deletions -->" << endl;
-	print_list(head);
-	cout << "\nnumber of elements: " << count_list(head) << endl;
-
+	cout << "\nAfter Deletions -->" << endl;
+	display(head);
+	cout << "\nNumber of elements: " << Count(head) << endl;
 
 	return 0;
 }
