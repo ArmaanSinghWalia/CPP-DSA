@@ -14,7 +14,8 @@ More Coming Soon : Search, Reversal, etc.
 
 Operations -> Traverse, Count
 
-Insertions -> Inserting in the beginning, end, and at a specific postion.
+Insertions -> Inserting in the beginning, end, after a node, and at a specific postion. 
 
-Deletions -> Deleting from the beginning, end, and at a specific postion.
+
+Deletions -> Deleting from the beginning, end, after a node, at a specific postion, and by checking value
 
