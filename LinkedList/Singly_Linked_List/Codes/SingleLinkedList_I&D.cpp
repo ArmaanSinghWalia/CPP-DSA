@@ -1,7 +1,9 @@
 // Singly Linked List
 // Full Implementation: Insertions, Deletions, Traversal, Count
 // Extended version with InsertAtPos, DeleteAfter, DeleteByValue
-// Refined for clarity on 09/08/2025
+
+// Wrote My First, Zero-Mistakes Code On 09/07/2025
+// Refined for clarity on 07/09/2025
 
 // - ASWalia
 
@@ -299,3 +301,4 @@ int main() {
 
 	return 0;
 }
+
