@@ -1,3 +1,9 @@
+// Singly Linked List
+// Full Implementation: Push, Pop, Peek, isEmpty
+// Revisted on 14.09.25 and pushed Linked List implementation.
+
+// - ASWalia
+
 #include <iostream>
 using namespace std;
 
@@ -96,4 +102,5 @@ int main() {
 
     return 0;
 }
+
 
