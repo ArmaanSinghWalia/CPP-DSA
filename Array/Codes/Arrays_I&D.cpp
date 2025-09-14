@@ -1,3 +1,11 @@
+// Arrays
+// Full Implementation: Insertions, Deletions, Input, Traversal, Size
+
+// Wrote My First Code Way Back In August
+// Perfected And Refined For Clarity On 14/09/2025
+
+// - ASWalia
+
 #include <iostream>
 using namespace std;
 
@@ -118,3 +126,4 @@ int main() {
 
     return 0;
 }
+
