@@ -1,106 +1,166 @@
-// Singly Linked List
+// Stack implemented by arrays.
 // Full Implementation: Push, Pop, Peek, isEmpty
-// Revisted on 14.09.25 and pushed Linked List implementation.
+// Revisted on 15.09.25 
+// Added : Display(), Count(), SearchFor(int key), checkEmpty(bool status), ClearStack(), ~Stack() {Destructor}
 
 // - ASWalia
 
 #include <iostream>
 using namespace std;
 
+// Array-Based Stack Implementation
 class Stack {
 public:
-    int* arr;   // Stores the elements
-    int top;    // Index of the top element
-    int size;   // Maximum number of elements allowed
+    int* Arr;   // Pointer to dynamically allocated array
+    int Size;   // Maximum capacity of stack
+    int Top;    // Index of top element (-1 when empty)
 
-    // Constructor - creates a stack with given size
-    Stack(int size) {
-        this->size = size;
-        arr = new int[size];
-        top = -1;  // Stack starts empty
+    // Constructor: Initialize stack with given size
+    Stack(int s) {
+        Size = s;
+        Arr = new int[s];
+        Top = -1;
     }
 
-    // Add an element to the stack
+    // Push: Add element to the top
     void push(int element) {
-        if (size - top > 1) { // Check space
-            top++;
-            arr[top] = element;
-            cout << "Pushed: " << element << endl;
+        if (Top == Size - 1) {
+            cout << "Error: Stack overflow. Cannot push " << element << endl;
+            return;
         }
-        else {
-            cout << "Exception Thrown. " << element << " Caused Stack Overflow" << endl;
-        }
+        Top++;
+        Arr[Top] = element;
     }
 
-    // Remove the top element
+    // Pop: Remove top element
     void pop() {
-        if (top >= 0) { // Check if stack is not empty
-            cout << "Popped: " << arr[top] << endl;
-            top--;
+        if (Top == -1) {
+            cout << "Error: Stack underflow. Cannot pop." << endl;
+            return;
         }
-        else {
-            cout << "Exception Thrown. Stack Overflow" << endl;
-        }
+        int temp = Arr[Top];
+        Top--;
+        cout << temp << " has been popped from the stack" << endl;
     }
 
-    // View the top element
+    // Peek: View top element
     void peek() {
-        if (top >= 0) {
-            cout << "Top element is: " << arr[top] << endl;
+        if (Top == -1) {
+            cout << "Error: Stack is empty. Cannot peek." << endl;
+            return;
         }
-        else {
-            cout << "Stack is empty" << endl;
-        }
+        cout << "Topmost element: " << Arr[Top] << endl;
     }
 
-    // Check if stack is empty
-   void isEmpty() {
-	if (top == -1) {
-		cout << "stack is empty" << endl;
-		return;
-	}
-	cout << "Stack is not empty" << endl;
-}
+    // Display: Print all elements from top to bottom
+    void Display() {
+        if (Top == -1) {
+            cout << "Stack is empty. Nothing to display." << endl;
+            return;
+        }
+        cout << "Stack elements (top to bottom): ";
+        for (int i = Top; i >= 0; i--) {
+            cout << Arr[i] << " ";
+        }
+        cout << endl;
+    }
 
+    // Count: Number of elements in stack
+    void Count() {
+        int count = Top + 1;
+        cout << "Size of stack: " << count << endl;
+    }
+
+    // Search: Find element and print its position (1-based from bottom)
+    void SearchFor(int key) {
+        for (int i = Top; i >= 0; i--) {
+            if (Arr[i] == key) {
+                cout << "Element " << key << " found at position: " << i + 1 << endl;
+                return;
+            }
+        }
+        cout << "Element " << key << " not found in the stack" << endl;
+    }
+
+    // Check if stack is empty (helper function for main)
+    bool isEmpty() {
+        return Top == -1;
+    }
+
+    void checkEmpty(bool status) {
+        if (status)
+            cout << "Stack has no elements" << endl;
+        else
+            cout << "Stack is not empty" << endl;
+    }
+
+    // Clear stack
+    void ClearStack() {
+        Top = -1;
+        cout << "Stack has been reset" << endl;
+    }
+
+    // Destructor: free memory
+    ~Stack() {
+        delete[] Arr;
+        cout << "Stack memory freed from heap" << endl;
+    }
 };
 
+// Main function to test stack
 int main() {
-    Stack st(5);  // Stack can hold up to 5 elements
+    Stack s(5); // Initialize stack of size 5
 
-    // Step 1: Add numbers 1, 2, 3
-    cout << "\nAdding 1, 2, 3 to the stack...\n";
-    st.push(1);
-    st.push(2);
-    st.push(3);
+    cout << "Operations on empty stack:" << endl;
+    s.pop();
+    s.peek();
+    s.checkEmpty(s.isEmpty());
+    s.Display();
+    s.Count();
+    cout << endl;
 
-    // Step 2: See what's on top
-    cout << "\nChecking top element...\n";
-    st.peek();
+    cout << "Pushing elements and checking overflow:" << endl;
+    s.push(1);
+    s.push(2);
+    s.push(3);
+    s.push(4);
+    s.push(5);
+    s.push(6); // Overflow
+    s.peek();
+    s.checkEmpty(s.isEmpty());
+    s.Display();
+    s.SearchFor(3);
+    s.SearchFor(10);
+    s.Count();
+    cout << endl;
 
-    // Step 3: Remove top element
-    cout << "\nRemoving top element...\n";
-    st.pop();
+    cout << "Popping elements and checking underflow:" << endl;
+    s.pop();
+    s.pop();
+    s.pop();
+    s.pop();
+    s.pop();
+    s.pop(); // Underflow
+    s.peek();
+    s.checkEmpty(s.isEmpty());
+    s.Display();
+    s.Count();
+    cout << endl;
 
-    // Step 4: See what's on top now
-    cout << "\nChecking top element again...\n";
-    st.peek();
-
-    // Step 5: Add more numbers to test overflow
-    cout << "\nAdding 4, 5, 6; 7 to check overflow...\n";
-    st.push(4);
-    st.push(5);
-    st.push(6);
-    st.push(7); // This will overflow
-
-    // Step 6: Final top check
-    cout << "\nFinal top element...\n";
-    st.peek();
-
-    // Step 7: Check if stack is empty
-    cout << "\nIs stack empty? " << endl;
-    st.isEmpty();
+    cout << "Resetting stack:" << endl;
+    s.push(10);
+    s.push(20);
+    s.push(30);
+    s.Display();
+    s.Count();
+    s.ClearStack();
+    s.checkEmpty(s.isEmpty());
+    s.Display();
+    s.Count();
+    cout << endl;
 
     return 0;
 }
+
 
 
