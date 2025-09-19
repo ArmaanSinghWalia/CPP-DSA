@@ -1,4 +1,4 @@
-// Stack implemented by arrays: Core Operations and Utility Functions
+// Queue implemented by arrays: Core Operations and Utility Functions
 // Endless procrastination finally ended.
 // Overestimated toughness.
 // Pushed on September 19th, 2025.
@@ -130,4 +130,5 @@ int main() {
 
     return 0;
 }
+
 
