@@ -26,17 +26,6 @@ void InsertInEnd(Node*& Head, int newval) {
 	last->next = newnode;
 }
 
-void Display(Node* n) {
-	if (!n) {
-		cout << "Cant display an empty list" << endl;
-		return;
-	}
-	while (n) {
-		cout << n->data << " ";
-		n = n->next;
-	}
-}
-
 // Helper function for recursion
 void Reverse(Node*& HEAD, Node* Prev, Node* Curr) {
 	if (!Curr) {
