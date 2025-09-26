@@ -1,3 +1,10 @@
+// Submitted on LeetCode on 27 September 2025
+// Display function was slowing the program by 14ms
+// Wrote my full code and commented the LeetCode solution down below
+// Feels good
+
+// ASWalia
+
 #include<iostream>
 using namespace std;
 
@@ -130,3 +137,4 @@ public:
 };
 
 */
+
