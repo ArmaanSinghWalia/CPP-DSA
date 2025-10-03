@@ -13,8 +13,7 @@ public:
     // Constructor
     Node(int v) {
         value = v;
-        left = nullptr;
-        right = nullptr;
+        left = right = nullptr;
     }
 };
 
@@ -147,13 +146,15 @@ int main() {
     Node* root = nullptr;
 
     // Insert elements
+    // Root needs reassignment only on the very first insert (when it's nullptr);
+    // afterwards Insert just updates subtrees, not the root itself.
     root = Insert(root, 50);
-    root = Insert(root, 30);
-    root = Insert(root, 70);
-    root = Insert(root, 20);
-    root = Insert(root, 40);
-    root = Insert(root, 60);
-    root = Insert(root, 80);
+    Insert(root, 30);
+    Insert(root, 70);
+    Insert(root, 20);
+    Insert(root, 40);
+    Insert(root, 60);
+    Insert(root, 80);
 
     cout << "Inorder Traversal of BST --> ";
     InOrder(root);
@@ -183,3 +184,4 @@ int main() {
 
     return 0;
 }
+
