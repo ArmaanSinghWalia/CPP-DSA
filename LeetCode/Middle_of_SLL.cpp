@@ -1,6 +1,10 @@
 // Given the head of a singly linked list, return the middle node of the linked list.
 // If there are two middle nodes, return the second middle node.
 
+// Pushed on 4:45am, 21 October 2025
+// First code to work on the first time
+// BEST way to code --> visualise and dry run
+
 #include<iostream>
 using namespace std;
 
@@ -120,5 +124,6 @@ public:
 
 	}
 };
+
 
 */
