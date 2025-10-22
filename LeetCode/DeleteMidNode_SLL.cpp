@@ -19,7 +19,7 @@ void Display(Node* n) {
 	}
 }
 
-int count(Node* n){
+int count(Node* n) {
 	int size = 0;
 	while (n) {
 		size++;
@@ -38,7 +38,7 @@ Node* OneBeforeMiddle(Node* Head) {
 	// so fractional part is discarded by explicit type conversion
 	int mid = size / 2;
 	Node* prev = nullptr;
-	
+
 	// shifitng the head pointer to point to middle element
 	// note here inclusive unlike in middle_of_SLL problem as here we're doing implicit type conversion instead of defining the middle node position
 	for (int i = 1; i <= mid; i++) {
@@ -112,3 +112,68 @@ int main() {
 
 	return 0;
 }
+
+
+/*--------------LeetCode Solution---------------*/
+
+
+/*
+
+
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+
+class Solution {
+public:
+
+	int count(ListNode* n) {
+		int size = 0;
+		while (n) {
+			size++;
+			n = n->next;
+		}
+		return size;
+	}
+
+	ListNode* OneBeforeMiddle(ListNode* head) {
+		int size = count(head);
+		int mid = size / 2;
+		ListNode* prev = nullptr;
+		for (int i = 1; i <= mid; i++) {
+			prev = head;
+			head = head->next;
+		}
+		return prev;
+	}
+
+	ListNode* deleteMiddle(ListNode* head) {
+		if (!head || !head->next) return nullptr;
+		/*
+// Dont manually delete nodes as
+// LeetCode calls own destructor
+// just make it nullptr,NEVER delete urself
+
+
+	//	if (!head->next) {
+	//		ListNode* temp = head;
+	//		head = head->next;
+	//		delete temp;
+	//		return nullptr;
+	//	}
+		
+		ListNode* prevMidNode = OneBeforeMiddle(head);
+		ListNode* MidNode = prevMidNode->next;
+		prevMidNode->next = MidNode->next;
+		delete MidNode;
+		return head;
+	}
+};
+
+*/
+
