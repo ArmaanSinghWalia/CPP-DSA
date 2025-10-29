@@ -4,7 +4,6 @@ using namespace std;
 // ===============================================================
 //                  BUBBLE SORT IMPLEMENTATION (ADAPTIVE)
 // ===============================================================
-// Author: <Your Name>
 // Description:
 //   - Reads an unsorted array from user input
 //   - Sorts it using the Bubble Sort algorithm (adaptive version)
@@ -12,10 +11,6 @@ using namespace std;
 // ===============================================================
 
 
-// ---------------------------------------------------------------
-// Function: Input
-// Purpose : Take input for an unsorted array from the user
-// ---------------------------------------------------------------
 void Input(int arr[], int Size) {
     cout << "Enter an Unsorted array of elements -->\n" << endl;
 
@@ -25,11 +20,6 @@ void Input(int arr[], int Size) {
     }
 }
 
-
-// ---------------------------------------------------------------
-// Function: Output
-// Purpose : Display the elements of the array
-// ---------------------------------------------------------------
 void Output(int arr[], int Size) {
     for (int i = 0; i < Size; i++) {
         cout << "Element " << i + 1 << " : " << arr[i] << endl;
@@ -37,16 +27,12 @@ void Output(int arr[], int Size) {
     cout << endl;
 }
 
-
-// ---------------------------------------------------------------
-// Function: BubbleSort
-// Purpose : Sort the array using Bubble Sort algorithm
 // Notes   :
 //   - Works by repeatedly swapping adjacent elements
 //   - Adaptive: Stops early if no swaps occur in a pass
 //   - arr[] behaves like *arr (pointer to first element),
 //     so changes made here reflect in main()
-// ---------------------------------------------------------------
+
 void BubbleSort(int arr[], int Size) {
 
     // Perform (Size - 1) passes
@@ -72,11 +58,8 @@ void BubbleSort(int arr[], int Size) {
     }
 }
 
+// ---------------------------------------------------------------
 
-// ---------------------------------------------------------------
-// Function: main
-// Purpose : Entry point — reads size, inputs array, sorts, outputs
-// ---------------------------------------------------------------
 int main() {
 
     int arr[100];
@@ -105,3 +88,4 @@ int main() {
 
     return 0;
 }
+
